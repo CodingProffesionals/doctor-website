@@ -7,7 +7,7 @@ export default function handler(req, res) {
         user: 'yudit1994@gmail.com',
         pass: 'wdtozclshfmzjzhx',
       },
-      secure: true,
+      secure: false,
     }) 
     const mailData = {
       from: req.body.email,
