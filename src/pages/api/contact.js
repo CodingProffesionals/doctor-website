@@ -16,7 +16,6 @@ export default function handler(req, res) {
 
       } else {
         console.log("Server is ready to take our messages");
-        res.status(200).json({ message: "Server is ready to take our messages" });
 
       }
     });
@@ -28,12 +27,17 @@ export default function handler(req, res) {
       html: `<div>${req.body.message}</div></br><b>Contact Details</b></br><p>Name: ${req.body.first + ' '+req.body.last}</p><p>Phone no: ${req.body.phone}</p><p>Sent from:
       ${req.body.email}</p>`
     }
-    // transporter.sendMail(mailData, function (err, info) {
-    //   if(err)
-    //     console.log(err)
-    //   else
-    //     console.log(info)
-    // })
+    transporter.sendMail(mailData, function (err, info) {
+      if(err)
+      {     
+        console.log(err);
+        res.status(200).json({ message: "There is some error while sending" });
+
+      } else
+        console.log(info)
+        res.status(200).json({ message: "Message send successfully!" });
+
+    })
       console.log(req.body);
     }
     
